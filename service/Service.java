@@ -62,6 +62,7 @@ public class Service {
                 file += scanner.nextLine();
                 file += "\n";
             }
+            scanner.close();
             System.out.println(file);
             fileWriter = new FileWriter(getSurName());
             fileWriter.write(file);
