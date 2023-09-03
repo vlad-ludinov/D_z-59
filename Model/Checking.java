@@ -1,7 +1,7 @@
-package Model;
+package model;
 import java.time.LocalDate;
 
-import Exception.InvalidDataFormatException;
+import exception.InvalidDataFormatException;
 
 public class Checking {
     
@@ -82,9 +82,10 @@ public class Checking {
         try {
             Long phoneNumber = Long.parseLong(phone);
             if (phone.length() == 11 && phoneNumber < 100000000000L && phoneNumber > 9999999999L) {
+                return true;
+            } else {
                 throw new InvalidDataFormatException();
             }
-            return true;
         } catch (NumberFormatException | InvalidDataFormatException e) {
             return false;
         }

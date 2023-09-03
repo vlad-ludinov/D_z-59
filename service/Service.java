@@ -1,13 +1,14 @@
+package service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.Scanner;
 
-import Exception.InvalidDataFormatException;
-import Model.ProfileFormat;
+import model.ProfileFormat;
+import exception.InvalidDataFormatException;
 
 public class Service {
 
@@ -54,24 +55,27 @@ public class Service {
         FileReader fileReader;
         FileWriter fileWriter;
         String file = "";
-            if (Files.exists(new File(getSurName()).toPath())) {
-                fileReader = new FileReader(getSurName());
-                while (fileReader.ready()) {
-                    file += fileReader.read();
-                }
-                fileWriter = new FileWriter(getSurName());
-                fileWriter.write(file);
-                fileWriter.write(   String.format("<%s><%s><%s><%s><%s><%s>",
-                                    getSurName(), getName(), getFatherName(),
-                                    getDate(), getPhone(), getGender()));
-                fileReader.close();
-                fileWriter.close();
-            } else {
-                fileWriter = new FileWriter(getSurName());
-                fileWriter.write(   String.format("<%s><%s><%s><%s><%s><%s>",
-                                    getSurName(), getName(), getFatherName(),
-                                    getDate(), getPhone(), getGender()));
-                fileWriter.close();
+        if (Files.exists(new File(getSurName()).toPath())) {
+            fileReader = new FileReader(new File(getSurName()));
+            Scanner scanner = new Scanner(fileReader);
+            while (scanner.hasNextLine()) {
+                file += scanner.nextLine();
+                file += "\n";
             }
+            System.out.println(file);
+            fileWriter = new FileWriter(getSurName());
+            fileWriter.write(file);
+            fileWriter.write(   String.format("<%s><%s><%s><%s><%s><%s>",
+                                getSurName(), getName(), getFatherName(),
+                                getDate(), getPhone(), getGender()));
+            fileReader.close();
+            fileWriter.close();
+        } else {
+            fileWriter = new FileWriter(getSurName());
+            fileWriter.write(   String.format("<%s><%s><%s><%s><%s><%s>",
+                                getSurName(), getName(), getFatherName(),
+                                getDate(), getPhone(), getGender()));
+            fileWriter.close();
+        }
     }
 } 

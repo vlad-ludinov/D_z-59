@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Exception.InvalidDataFormatException;
+import exception.InvalidDataFormatException;
 
 public class ProfileFormat {
 
@@ -41,9 +41,9 @@ public class ProfileFormat {
     
     public void setDate(String date) throws InvalidDataFormatException{
         if (date.length() != 10) {
-            throw new InvalidDataFormatException("Invalid input format: date format expected dd.mm.yyyy");
+            throw new InvalidDataFormatException("Invalid input format: date format expected dd.mm.yyyy1");
         } else {
-            String[] dateArr = date.split(".");
+            String[] dateArr = date.split("\\.");
             if (dateArr.length != 3 || !Checking.isDate(dateArr[0], dateArr[1], dateArr[2])) {
                 throw new InvalidDataFormatException("Invalid input format: date format expected dd.mm.yyyy");
             }
