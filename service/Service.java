@@ -63,7 +63,6 @@ public class Service {
                 file += "\n";
             }
             scanner.close();
-            System.out.println(file);
             fileWriter = new FileWriter(getSurName());
             fileWriter.write(file);
             fileWriter.write(   String.format("<%s><%s><%s><%s><%s><%s>",

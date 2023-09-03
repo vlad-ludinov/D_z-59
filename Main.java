@@ -7,7 +7,6 @@ public class Main {
         
         
         View view = new View();
-        view.setProfile(view.inputData());
-        view.saveIntoFile();
+        view.start();
     }
 }
